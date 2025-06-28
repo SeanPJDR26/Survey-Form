@@ -94,7 +94,11 @@
     <input type="text" name="customerName" id="customerName" required>
 
     <label for="mechanicName">Mechanic Name</label>
-    <input type="text" name="mechanicName" id="mechanicName" required>
+    <select name="mechanicName" id="mechanicName" required>
+        <option value="">Select Mechanic</option>
+        <option value="Sean">Sean</option>
+        <option value="Matthew">Matthew</option>
+    </select>
 
     <label>Type of Service</label>
     <div style="margin-bottom: 10px;">
@@ -115,14 +119,24 @@
         </label>
     </div>
 
-    <label for="jobSatisfaction">How well did the mechanic do?</label>
-    <select name="jobSatisfaction" id="jobSatisfaction" required>
-        <option value="">Select rating</option>
-        <option value="Excellent">Excellent</option>
-        <option value="Good">Good</option>
-        <option value="Average">Average</option>
-        <option value="Poor">Poor</option>
-    </select>
+    <label>How well did the mechanic do?</label>
+    <div style="margin-bottom: 10px; display: flex; gap: 12px;">
+        <label style="margin: 0; display: flex; align-items: center;">
+            <input type="radio" name="jobSatisfaction" value="1" required> 1
+        </label>
+        <label style="margin: 0; display: flex; align-items: center;">
+            <input type="radio" name="jobSatisfaction" value="2"> 2
+        </label>
+        <label style="margin: 0; display: flex; align-items: center;">
+            <input type="radio" name="jobSatisfaction" value="3"> 3
+        </label>
+        <label style="margin: 0; display: flex; align-items: center;">
+            <input type="radio" name="jobSatisfaction" value="4"> 4
+        </label>
+        <label style="margin: 0; display: flex; align-items: center;">
+            <input type="radio" name="jobSatisfaction" value="5"> 5
+        </label>
+    </div>
 
     <label for="timeliness">Was the job completed on time?</label>
     <select name="timeliness" id="timeliness" required>
@@ -138,7 +152,7 @@
     <button type="submit">Submit</button>
 </form>
 <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwlJoH1Bie2i0QKD6bDrXqyT772vfIrdPVN5n8hlHxGsCbCnG7sV73vaWK6tyhYqsxvHw/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzqj_ESzsNtre_KKrLh5FQAXrLA8_QphXlm-nG_H6kHTbtgSkk0-SNDbevmIOjPgwk0OQ/exec';
     const form = document.getElementById('googleForm');
     form.addEventListener('submit', e => {
         e.preventDefault();
