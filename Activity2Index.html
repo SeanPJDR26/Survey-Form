@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mechanic Job Feedback Form</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Roboto&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        form {
+            background: #fff;
+            max-width: 380px;
+            margin: 48px auto;
+            padding: 32px 28px 28px 28px;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(60, 72, 88, 0.18), 0 1.5px 8px rgba(80, 112, 160, 0.08);
+            border: 1.5px solid #e0e7ff;
+            position: relative;
+        }
+        form::before {
+            content: "";
+            position: absolute;
+            top: -16px; left: 50%;
+            transform: translateX(-50%);
+            width: 60px; height: 6px;
+            background: linear-gradient(90deg, #6366f1 0%, #38bdf8 100%);
+            border-radius: 3px;
+        }
+        label {
+            display: block;
+            margin: 18px 0 6px;
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: #3730a3;
+            letter-spacing: 0.02em;
+        }
+        input[type="text"],
+        select,
+        textarea,
+        input[type="number"] {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1.5px solid #c7d2fe;
+            border-radius: 6px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            background: #f1f5f9;
+            box-sizing: border-box;
+            transition: border 0.2s;
+            font-family: 'Roboto', Arial, sans-serif;
+        }
+        input[type="text"]:focus,
+        select:focus,
+        textarea:focus,
+        input[type="number"]:focus {
+            border-color: #6366f1;
+            outline: none;
+            background: #fff;
+        }
+        button {
+            width: 100%;
+            padding: 12px 0;
+            background: linear-gradient(90deg, #6366f1 0%, #38bdf8 100%);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 17px;
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 24px;
+            box-shadow: 0 2px 8px rgba(56,189,248,0.08);
+            letter-spacing: 0.04em;
+            transition: background 0.2s, transform 0.1s;
+        }
+        button:hover {
+            background: linear-gradient(90deg, #4338ca 0%, #0ea5e9 100%);
+            transform: translateY(-2px) scale(1.02);
+        }
+        textarea {
+            resize: vertical;
+        }
+    </style>
+</head>
+<body>
+<form id="googleForm">
+    <label for="customerName">Customer Name</label>
+    <input type="text" name="customerName" id="customerName" required>
+
+    <label for="mechanicName">Mechanic Name</label>
+    <select name="mechanicName" id="mechanicName" required>
+        <option value="">Select Mechanic</option>
+        <option value="Sean">Sean</option>
+        <option value="Matthew">Matthew</option>
+    </select>
+
+    <label>Type of Service</label>
+    <div style="margin-bottom: 10px;">
+        <label style="font-weight: normal;">
+            <input type="checkbox" name="serviceType" value="Oil Change"> Oil Change
+        </label><br>
+        <label style="font-weight: normal;">
+            <input type="checkbox" name="serviceType" value="Brake Repair"> Brake Repair
+        </label><br>
+        <label style="font-weight: normal;">
+            <input type="checkbox" name="serviceType" value="Engine Diagnostics"> Engine Diagnostics
+        </label><br>
+        <label style="font-weight: normal;">
+            <input type="checkbox" name="serviceType" value="Tire Replacement"> Tire Replacement
+        </label><br>
+        <label style="font-weight: normal;">
+            <input type="checkbox" name="serviceType" value="Other"> Other
+        </label>
+    </div>
+
+    <label>How well did the mechanic do?</label>
+    <div style="margin-bottom: 10px; display: flex; gap: 12px;">
+        <label style="margin: 0; display: flex; align-items: center;">
+            <input type="radio" name="jobSatisfaction" value="1" required> 1
+        </label>
+        <label style="margin: 0; display: flex; align-items: center;">
+            <input type="radio" name="jobSatisfaction" value="2"> 2
+        </label>
+        <label style="margin: 0; display: flex; align-items: center;">
+            <input type="radio" name="jobSatisfaction" value="3"> 3
+        </label>
+        <label style="margin: 0; display: flex; align-items: center;">
+            <input type="radio" name="jobSatisfaction" value="4"> 4
+        </label>
+        <label style="margin: 0; display: flex; align-items: center;">
+            <input type="radio" name="jobSatisfaction" value="5"> 5
+        </label>
+    </div>
+
+    <label for="timeliness">Was the job completed on time?</label>
+    <select name="timeliness" id="timeliness" required>
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="Partially">Partially</option>
+    </select>
+
+    <label for="comments">Additional Comments</label>
+    <textarea name="comments" id="comments" rows="3"></textarea>
+
+    <button type="submit">Submit</button>
+</form>
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwlJoH1Bie2i0QKD6bDrXqyT772vfIrdPVN5n8hlHxGsCbCnG7sV73vaWK6tyhYqsxvHw/exec';
+    const form = document.getElementById('googleForm');
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                alert("Form submitted successfully!");
+                form.reset();
+            })
+            .catch(error => alert('Error!', error.message));
+    });
+</script>
+</body>
+</html>
